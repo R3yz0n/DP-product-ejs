@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Book Shop - Add a New Book</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <style>
+      /* Add custom CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      .add-book-form {
+        background-color: #fff;
+        max-width: 600px;
+        margin: 10px auto;
+        padding: 20px 40px 20px 20px;
+
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .add-book-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        font-weight: bold;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="number"],
+      .form-group textarea,
+      .form-group input[type="url"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .add-book-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+        display: block; /* Center the button */
+        margin: 0 auto; /* Center the button */
+      }
+
+      .add-book-button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="add-book-form">
+      <h2>Add a New Book</h2>
+      <form action="/add-book" method="POST">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" step="0.01" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL:</label>
+          <input type="url" id="image" name="image" />
+        </div>
+
+        <button class="add-book-button" type="submit">Add Book</button>
+      </form>
+    </section>
+
+    <script>
+      // JavaScript to set a default image URL if no image URL is provided
+      const imageUrlInput = document.getElementById("image");
+
+      imageUrlInput.addEventListener("blur", () => {
+        if (imageUrlInput.value.trim() === "") {
+          imageUrlInput.value =
+            "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149334862.jpg?w=2000";
+        }
+      });
+    </script>
+  </body>
+</html>

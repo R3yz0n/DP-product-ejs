@@ -1,0 +1,154 @@
+<!-- allbook.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookstore - All Books</title>
+    <style>
+      /* Add your internal CSS styling here */
+
+      html {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center; /* Center-align the entire content */
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      header h1 {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: 0;
+        transition: background-color 0.3s;
+      }
+
+      h2,
+      h4 {
+        margin: 6px;
+        color: rgb(6, 58, 110);
+      }
+
+      .book-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .book-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 8px;
+        max-width: 300px;
+        text-align: center;
+      }
+
+      .book-image {
+        max-width: 100%;
+        max-height: 300px;
+      }
+
+      .book-details p {
+        margin: 0;
+      }
+
+      .book-actions {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .edit-button,
+      .delete-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-size: medium;
+      }
+
+      .edit-button:hover,
+      .delete-button:hover {
+        background-color: #0056b3;
+      }
+
+      .delete-button {
+        background-color: #dc3545;
+      }
+
+      .add-button {
+        display: inline-block;
+        text-align: center;
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        margin: 20px auto;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      .add-button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Premium Book Shop</h1>
+    </header>
+
+    <h1>All Books</h1>
+
+    <div class="book-list">
+      <% products.forEach(function(book) { %>
+      <div class="book-item">
+        <img
+          src="<%= book.image %>"
+          alt="<%= book.title %>"
+          class="book-image"
+        />
+        <div class="book-details">
+          <h2><%= book.title %></h2>
+          <h4><%= book.author %></h4>
+          <h4>$<%= book.price %></h4>
+          <p><%= book.description %></p>
+        </div>
+        <div class="book-actions">
+          <a href="/editBook/<%= book.id %>" class="edit-button">Edit</a>
+          <form
+            method="get"
+            action="/deleteBook/<%= book.id %>"
+            class="delete-form"
+          >
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+    <a href="/addBook" class="add-button">Add New Book</a>
+
+    <%- include('components/footer') %>
+  </body>
+</html>
