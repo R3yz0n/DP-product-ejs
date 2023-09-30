@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Premium Book Shop - Add a New Book</title>
+    <title>Advisory</title>
     <link rel="stylesheet" href="/styles/main.css" />
     <style>
       /* Add custom CSS styles here */
@@ -14,17 +14,17 @@
         padding: 0;
       }
 
-      .add-book-form {
+      .add-product-form {
         background-color: #fff;
-        max-width: 600px;
-        margin: 10px auto;
+        max-width: 400px;
+        margin: 50px auto;
         padding: 20px 40px 20px 20px;
 
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
-      .add-book-form h2 {
+      .add-product-form h2 {
         text-align: center;
         margin-bottom: 20px;
         color: #333;
@@ -50,7 +50,7 @@
         transition: border-color 0.3s;
       }
 
-      .add-book-button {
+      .add-product-button {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -64,23 +64,23 @@
         margin: 0 auto; /* Center the button */
       }
 
-      .add-book-button:hover {
+      .add-product-button:hover {
         background-color: #0056b3;
       }
     </style>
   </head>
   <body>
-    <section class="add-book-form">
-      <h2>Add a New Book</h2>
-      <form action="/add-book" method="POST">
+    <section class="add-product-form">
+      <h2>Add a Product</h2>
+      <form action="/add-product" method="POST">
         <div class="form-group">
           <label for="title">Title:</label>
           <input type="text" id="title" name="title" required />
         </div>
 
         <div class="form-group">
-          <label for="author">Author:</label>
-          <input type="text" id="author" name="author" required />
+          <label for="vendor">Vendor:</label>
+          <input type="text" id="vendor" name="vendor" required />
         </div>
 
         <div class="form-group">
@@ -103,7 +103,7 @@
           <input type="url" id="image" name="image" />
         </div>
 
-        <button class="add-book-button" type="submit">Add Book</button>
+        <button class="add-product-button" type="submit">Add Product</button>
       </form>
     </section>
 
@@ -114,7 +114,7 @@
       imageUrlInput.addEventListener("blur", () => {
         if (imageUrlInput.value.trim() === "") {
           imageUrlInput.value =
-            "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149334862.jpg?w=2000";
+            "https://m.media-amazon.com/images/I/61vuc4Jrt9L._AC_SX569_.jpg";
         }
       });
     </script>

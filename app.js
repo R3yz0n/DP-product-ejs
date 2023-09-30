@@ -7,7 +7,6 @@ const app = express();
 // db connection
 require("./model/index");
 
-// set the view engine to ejs
 app.set("view engine", "ejs");
 
 // serve static files from the `public` folder
@@ -21,74 +20,66 @@ app.get("/ping", (req, res) => {
   res.send("pong ");
 });
 
-// Get all books
+// Get all products
 app.get("/", async (req, res) => {
-  const allBooks = await products.findAll();
+  const allProducts = await products.findAll();
 
-  res.render("allProducts", { products: allBooks });
+  res.render("allProducts", { products: allProducts });
 });
 
-// Add new book
-app.get("/addBook", (req, res) => {
-  res.render("addBook", {});
+// Add new product
+app.get("/addProduct", (req, res) => {
+  res.render("addProduct", {});
 });
 
-app.post("/add-book", async (req, res) => {
-  const { title, price, description, author, image } = req.body;
+app.post("/add-product", async (req, res) => {
+  const { title, price, description, vendor, image } = req.body;
 
-  const newBook = await books.create({
+  await products.create({
     title,
     price,
     description,
-    author,
+    vendor,
     image,
   });
 
   res.redirect("/");
 });
 
-// // Single book
-// app.get("/book/:id", async (req, res) => {
-//   const { id } = req.params;
 
-//   const book = await books.findByPk(id);
-
-//   res.render("book", { book });
-// });
-
-// Edit book
-app.get("/editBook/:id", async (req, res) => {
+// Edit product
+app.get("/editProduct/:id", async (req, res) => {
   const { id } = req.params;
 
-  const book = await books.findByPk(id);
+  const product = await products.findByPk(id);
 
-  res.render("editBook", { book });
+  res.render("editProduct", { product });
 });
 
-app.post("/editBook/:id", async (req, res) => {
+app.post("/editProduct/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, price, description, author, image } = req.body;
+  const { title, price, description, vendor, image } = req.body;
 
-  const book = await books.findByPk(id);
+  const product = await products.findByPk(id);
 
-  book.title = title;
-  book.price = price;
-  book.description = description;
-  book.author = author;
-  book.image = image;
+  product.title = title;
+  product.price = price;
+  product.description = description;
+  product.vendor = vendor;
+  product.image = image;
 
-  await book.save();
+  await product.save();
 
   res.redirect("/");
 });
 
-// Delete book
-app.get("/deleteBook/:id", async (req, res) => {
+// Delete product
+app.get("/deleteProduct/:id", async (req, res) => {
   const { id } = req.params;
 
-  const book = await books.findByPk(id);
+  const product = await products.findByPk(id);
 
-  await book.destroy();
+  await product.destroy();
 
   res.redirect("/");
 });

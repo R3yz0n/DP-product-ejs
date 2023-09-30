@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const products = sequelize.define("products", {
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
